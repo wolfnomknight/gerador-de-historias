@@ -21,74 +21,102 @@
 # Adulto: jovem + criança
 # Senior: idade máxima * (2/3)
 
+import random
+
 # ==== HUMAN ==== #
-human_min_age = 9
-human_max_age = 90
-human_child_age = (9, 17)
-human_young_age = (18, 26)
-human_adult_age = (27, 59)
-human_senior_age = (60, 90)
+human = {"min_age": 9,
+         "max_age": 90,
+         "child_age": [9, 17],
+         "young_age": [18, 26],
+         "adult_age": [27, 59],
+         "senior_age": [60, 90]
+        }
 
 # ==== DWARF ==== #
-dwarf_min_age = 25
-dwarf_max_age = 400
-dwarf_child_age = (25, 49)
-dwarf_young_age = (50, 74)
-dwarf_adult_age = (75, 269)
-dwarf_senior_age = (270, 400)
+dwarf = {"min_age": 25,
+         "max_age": 400,
+         "child_age": [25, 49],
+         "young_age": [50, 74],
+         "adult_age": [75, 269],
+         "senior_age": [270, 400]
+        }
 
 # ==== ELF ==== #
-elf_min_age = 50
-elf_max_age = 750
-elf_child_age = (50, 99)
-elf_young_age = (100, 149)
-elf_adult_age = (150, 499)
-elf_senior_age = (500, 750)
+elf = {"min_age": 50,
+         "max_age": 750,
+         "child_age": [50, 99],
+         "young_age": [100, 149],
+         "adult_age": [150, 499],
+         "senior_age": [500, 750]
+        }
 
 # ==== HALFLING ==== #
-halfling_min_age = 10
-halfling_max_age = 250
-halfling_child_age = (10, 19)
-halfling_young_age = (20, 29)
-halfling_adult_age = (30, 169)
-halfling_senior_age = (170, 250)
+halfling = {"min_age": 10,
+         "max_age": 250,
+         "child_age": [10, 19],
+         "young_age": [20, 29],
+         "adult_age": [30, 169],
+         "senior_age": [170, 250]
+        }
 
 # ==== DRAGONBORN ==== #
-dragonborn_min_age = 8
-dragonborn_max_age = 80
-dragonborn_child_age = (8, 14)
-dragonborn_young_age = (15, 22)
-dragonborn_adult_age = (23, 54)
-dragonborn_senior_age = (55, 80)
+dragonborn = {"min_age": 8,
+         "max_age": 80,
+         "child_age": [8, 14],
+         "young_age": [15, 22],
+         "adult_age": [23, 54],
+         "senior_age": [55, 80]
+        }
 
 # ==== GNOME ==== #
-gnome_min_age = 20
-gnome_max_age = 500
-gnome_child_age = (20, 39)
-gnome_young_age = (40, 59)
-gnome_adult_age = (60, 334)
-gnome_senior_age = (335, 500)
+gnome = {"min_age": 20,
+         "max_age": 500,
+         "child_age": [20, 39],
+         "young_age": [40, 59],
+         "adult_age": [60, 334],
+         "senior_age": [335, 500]
+        }
 
 # ==== HALF-ELF ==== #
-halfelf_min_age = 10
-halfelf_max_age = 200
-halfelf_child_age = (10, 19)
-halfelf_young_age = (20, 29)
-halfelf_adult_age = (30, 134)
-halfelf_senior_age = (135, 200)
+halfelf = {"min_age": 10,
+         "max_age": 200,
+         "child_age": [10, 19],
+         "young_age": [20, 29],
+         "adult_age": [30, 134],
+         "senior_age": [135, 200]
+        }
 
 # ==== HALF-ORC ==== #
-halforc_min_age = 7
-halforc_max_age = 75
-halforc_child_age = (7, 13)
-halforc_young_age = (14, 20)
-halforc_adult_age = (21, 49)
-halforc_senior_age = (50, 75)
+halforc = {"min_age": 7,
+         "max_age": 75,
+         "child_age": [7, 13],
+         "young_age": [14, 20],
+         "adult_age": [21, 49],
+         "senior_age": [50, 75]
+        }
 
 # ==== TIEFLING ==== #
-tiefling_min_age = 9
-tiefling_max_age = 95
-tiefling_child_age = (9, 17)
-tiefling_young_age = (18, 27)
-tiefling_adult_age = (28, 64)
-tiefling_senior_age = (64, 95)
+tiefling = {"min_age": 9,
+         "max_age": 95,
+         "child_age": [9, 17],
+         "young_age": [18, 27],
+         "adult_age": [28, 64],
+         "senior_age": [65, 95]
+        }
+
+
+def age_select(race, age):
+    selected_age = []
+    if "child" in age:
+        selected_age.append(random.randint(eval(race)["child_age"][0], eval(race)["child_age"][1]))
+    if "young" in age:
+        selected_age.append(random.randint(eval(race)["young_age"][0], eval(race)["young_age"][1]))
+    if "adult" in age:
+        selected_age.append(random.randint(eval(race)["adult_age"][0], eval(race)["adult_age"][1]))
+    if "senior" in age:
+        selected_age.append(random.randint(eval(race)["senior_age"][0], eval(race)["senior_age"][1]))
+    if not age:
+        selected_age = random.randint(eval(race)["min_age"], eval(race)["max_age"])
+        return selected_age
+    result_age = random.choice(selected_age)
+    return result_age
